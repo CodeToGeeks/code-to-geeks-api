@@ -79,7 +79,7 @@ module.exports = (code) => {
                             href="https://www.codetogeeks.com"
                             style="
                               font-size: 1.4em;
-                              color: #205375;
+                              color:  #0287ab;
                               text-decoration: none;
                               font-weight: 600;
                             "
@@ -122,7 +122,7 @@ module.exports = (code) => {
                          <br/>
                         <h2
                           style="
-                            background: #205375;
+                            background:   #0287ab;
                             margin: 0 auto;
                             width: max-content;
                             padding: 0 10px;
