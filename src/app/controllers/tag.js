@@ -112,7 +112,6 @@ module.exports.delete = async (req, res) => {
 
       await dbConnection.query('COMMIT');
   }catch(err){
-    console.log(err.message)
       await dbConnection.query('ROLLBACK'); 
 
       return  res.status(400).json({ message: "Can not delete tag.." });
