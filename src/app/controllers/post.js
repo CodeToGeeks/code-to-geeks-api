@@ -309,7 +309,7 @@ module.exports.get_all_by_tag_id = async (req, res) => {
   posts = posts.rows;
 
   res.status(200).json({
-    total,
+    total: parseInt(total, 10),
     posts,
   });
 };
@@ -457,7 +457,7 @@ module.exports.getAllSavedPosts = async (req, res) => {
  * @access  Private [auth]
  */
 module.exports.unSavePost = async (req, res) => {
-  console.log(req.params.id);
+
   const result = await dbConnection.query(postSqlQuerys.UN_SAVE_POST, [
     req.user._id,
     req.params.id,
