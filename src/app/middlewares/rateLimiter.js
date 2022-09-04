@@ -24,6 +24,5 @@ module.exports = async (req, res, next) => {
       message: " Too many requests.",
     });
   }
-  console.log("Request coming from ip :", ip);
   next();
 };

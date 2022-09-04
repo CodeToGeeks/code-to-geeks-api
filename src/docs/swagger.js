@@ -173,7 +173,7 @@ module.exports = {
       get: post.getOnePostBySlug,
     },
     "/post/tag/{tag_id}": {
-      get: post.getOnePostByTagId,
+      get: post.getPostsByTagId,
     },
     "/post/{post_id}": {
       patch:  post.update,

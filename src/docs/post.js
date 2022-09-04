@@ -148,9 +148,9 @@ module.exports.getOnePostBySlug = {
   tags: ["Post"],
 };
 
-module.exports.getOnePostByTagId = {
-  summary: "get one post by tag id ",
-  description: "you can use this end point to  get  one post by tag id",
+module.exports.getPostsByTagId = {
+  summary: "get posts by tag id ",
+  description: "you can use this end point to get posts by tag id",
 
   parameters: [
     {
