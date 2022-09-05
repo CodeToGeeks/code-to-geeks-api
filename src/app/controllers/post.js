@@ -434,7 +434,7 @@ module.exports.getAllSavedPosts = async (req, res) => {
   const pageNumber = parseInt(req.query.pageNumber, 10);
   const pageSize = parseInt(req.query.pageSize, 10);
 
-  let total = await dbConnection.query(postSqlQuerys.GET_SAVED_POSTS_COUNT);
+  let total = await dbConnection.query(postSqlQuerys.GET_SAVED_POSTS_COUNT,[req.user._id]);
   total = total.rows[0].count;
 
   let savedPosts = await dbConnection.query(postSqlQuerys.GET_ALL_SAVED_POSTS, [
