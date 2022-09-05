@@ -93,7 +93,7 @@ DELETE_POST_LOVE_FROM_ALL: `DELETE FROM post_love WHERE   post = $1`,
   where sp.account_id =  $1
   order by  created_at DESC LIMIT $2 OFFSET $3`,
 
-  GET_SAVED_POSTS_COUNT: `SELECT COUNT(*) FROM saved_post`,
+  GET_SAVED_POSTS_COUNT: `SELECT COUNT(*) FROM saved_post where account_id = $1`,
   
   UN_SAVE_POST : `DELETE from saved_post WHERE account_id = $1 AND post_id =$2`,
   UN_SAVE_POST_FROM_ALL_USER : `DELETE from saved_post WHERE post_id =$1`,
