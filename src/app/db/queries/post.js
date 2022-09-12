@@ -43,7 +43,8 @@ exports.queryList = {
   `,
   GET_POSTS_COUNT: `SELECT COUNT(*) FROM post where published = $1`,
   GET_POSTS_COUNT_WITH_SEARCH: `SELECT COUNT(*) FROM post where published = $1 AND  title ILIKE $2`,
-  GET_POSTS_COUNT_BY_TAG_ID : `SELECT COUNT(*) FROM post_tag where tag= $1`,
+  GET_POSTS_COUNT_BY_TAG_ID : `SELECT COUNT(*) FROM post_tag PT INNER JOIN post P on P._id =  PT.post 
+  WHERE PT.tag = $1 and P.published = true`,
   CHECK_IF_TAG_EXIST : `select exists(select 1 from tag where _id = $1)`,
   CHECK_IF_POST_TAG_EXIST : `select exists(select 1 from post_tag where post = $1 AND tag = $2)`,
   GET_ALL_POST_TAG_BY_POST_ID: `select _id,tag from post_tag where post = $1 `,
