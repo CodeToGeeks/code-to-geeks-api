@@ -21,7 +21,7 @@ module.exports.signupValidator = (req, res, next) => {
     .min(8)
     .trim()
     .required()
-    .regex(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/)
+    .regex(/^(?=.*[a-zA-Z])(?=.*?[0-9]).{8,}$/)
     .label("password")
     .messages({
       "string.min": "password must at least 8 characters",
@@ -71,7 +71,7 @@ module.exports.updateValidator = (req, res, next) => {
     .trim()
     .max(20)
     .min(8)
-    .regex(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/)
+    .regex(/^(?=.*[a-zA-Z])(?=.*?[0-9]).{8,}$/)
     .label("password")
     .messages({
       "string.min": "password must at least 8 characters",
@@ -131,7 +131,7 @@ module.exports.verificationCodeValidator = (req, res, next) => {
     .max(20)
     .min(8)
     .required()
-    .regex(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/)
+    .regex(/^(?=.*[a-zA-Z])(?=.*?[0-9]).{8,}$/)
     .label("password")
     .messages({
       "string.min": "password must at least 8 characters",
