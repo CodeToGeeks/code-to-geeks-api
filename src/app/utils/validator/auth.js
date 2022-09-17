@@ -17,7 +17,7 @@ module.exports.signupValidator = (req, res, next) => {
     email: Joi.string().max(50).min(6).trim().email().required(),
 
     password: Joi.string()
-    .max(20)
+    .max(40)
     .min(8)
     .trim()
     .required()
@@ -47,7 +47,7 @@ module.exports.signupValidator = (req, res, next) => {
 module.exports.signInValidator = (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().max(50).min(6).email().trim().required(),
-    password: Joi.string().max(20).trim().required(),
+    password: Joi.string().max(40).trim().required(),
   });
   const result = schema.validate(req.body);
   if (result.error)
@@ -69,7 +69,7 @@ module.exports.updateValidator = (req, res, next) => {
     email: Joi.string().max(50).min(6).email().trim(),
     password: Joi.string()
     .trim()
-    .max(20)
+    .max(40)
     .min(8)
     .regex(/^(?=.*[a-zA-Z])(?=.*?[0-9]).{8,}$/)
     .label("password")
@@ -128,7 +128,7 @@ module.exports.verificationCodeValidator = (req, res, next) => {
     code: Joi.string().length(4).trim().required(),
     password: Joi.string()
     .trim()
-    .max(20)
+    .max(40)
     .min(8)
     .required()
     .regex(/^(?=.*[a-zA-Z])(?=.*?[0-9]).{8,}$/)
