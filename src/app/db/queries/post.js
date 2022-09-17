@@ -6,14 +6,14 @@ exports.queryList = {
   SEARCH : `SELECT _id, title FROM post WHERE title ILIKE $1`,
   GET_ALL_POSTS: `
   SELECT 
-  post._id, post.title, post.slug, post.cover_image_link, post.excerpt, post.tags, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, post.love_count , post.count_minutes_read,   post.created_at 
+  post._id, post.title, post.slug, post.cover_image_link, post.excerpt, post.tags, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, account.bio as author_bio, post.love_count , post.count_minutes_read,   post.created_at 
   FROM post
   inner JOIN account ON post.author = account._id
   where published = $1
   order by  created_at DESC LIMIT $2 OFFSET $3`,
   GET_ALL_POSTS_WITH_SEARCH: `
   SELECT 
-  post._id, post.title, post.slug, post.cover_image_link, post.excerpt, post.tags, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, post.love_count , post.count_minutes_read,   post.created_at 
+  post._id, post.title, post.slug, post.cover_image_link, post.excerpt, post.tags, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, account.bio as author_bio, post.love_count , post.count_minutes_read,   post.created_at 
   FROM post
   inner JOIN account ON post.author = account._id
   where published = $1 AND  title ILIKE $2
@@ -21,20 +21,20 @@ exports.queryList = {
   GET_ONE_POST_BY_ID : `
   SELECT 
   post._id, post.title, post.slug, post.cover_image_link, post.excerpt, post.tags, post.md,post.published, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  
-  account.profile_image_link as author_profile_image, post.tags, post.love_count , post.share_count, post.count_minutes_read,  post.created_at 
+  account.profile_image_link as author_profile_image, account.bio as author_bio, post.tags, post.love_count , post.share_count, post.count_minutes_read,  post.created_at 
   FROM post 
   inner JOIN account ON post.author= account._id
   where post._id = $1`,
   GET_ONE_POST_BY_SLUG : `
   SELECT 
   post._id, post.title, post.slug, post.cover_image_link ,post.excerpt, post.tags, post.md, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,
-  account.profile_image_link as author_profile_image, post.tags,  post.love_count , post.share_count, post.count_minutes_read, post.created_at 
+  account.profile_image_link as author_profile_image,  account.bio as author_bio, post.tags,  post.love_count , post.share_count, post.count_minutes_read, post.created_at 
   FROM post 
   inner JOIN account ON post.author= account._id
   where post.slug = $1`,
   GET_ALL_POST_BY_TAG_ID : `
   SELECT  
-  post._id, post.title, post.slug, post.cover_image_link,post.excerpt, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, post.tags, post.created_at 
+  post._id, post.title, post.slug, post.cover_image_link,post.excerpt, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name,  account.profile_image_link as author_profile_image, account.bio as author_bio, post.tags, post.created_at 
   from post_tag pt
   inner JOIN post ON post._id =pt.post
   inner JOIN account ON post.author= account._id
@@ -87,6 +87,7 @@ DELETE_POST_LOVE_FROM_ALL: `DELETE FROM post_love WHERE   post = $1`,
   SELECT  post._id as _id, post.title, post.slug, post.cover_image_link, 
   post.excerpt, post.tags, account._id as author_id, CONCAT(account.first_name , ' ', account.last_name) as  author_name, 
   account.profile_image_link as author_profile_image,
+  account.bio as author_bio,
   post.created_at 
   FROM saved_post sp
   inner JOIN post post ON sp.post_id  = post._id
